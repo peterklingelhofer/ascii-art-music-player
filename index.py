@@ -1,28 +1,32 @@
-import vlc
-import time
+import pygame
 import os
+import sys
+import time
 
-def playMusic(songPath):
-    instance = vlc.Instance()
-    player = instance.media_player_new()
-    media = instance.media_new(songPath)
-    player.set_media(media)
-    player.play()
+audio = "assets/test/Giulio Cesare in Egitto, opera, HWV 17 (Public Domain).mp3"
 
-    length = player.get_length() / 1000
+def playAudio(filePath):
+    pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load(filePath)
+    pygame.mixer.music.play()
 
-    currentTime = 0
+    while pygame.mixer.music.get_busy():
+        position = pygame.mixer.music.get_pos() / 1000
+        sys.stdout.write("\r|" + "#" * int(position) +
+                         "-" * (100 - int(position)) + "|")
 
-    while currentTime < length:
-        currentTime = player.get_time() / 1000
-        progress = currentTime / length
+        sys.stdout.flush()
+        time.sleep(0.1)
 
-        os.system('cls' if os.name == 'nt' else 'clear')
+    pygame.mixer.music.stop()
+    pygame.quit()
 
-        print('[' + '#' * int(progress * 20) + '-' * (20 - int(progress * 20)) + ']')
 
-        time.sleep(0.5)
+audioPath = audio.split('/')
+audioFileName = audioPath[len(audioPath) - 1]
 
-songPath = input("🎵 Enter the path of the song:")
+os.system('cls' if os.name == 'nt' else 'clear')
 
-playMusic(songPath)
+print(audioFileName)
+playAudio(audio)
