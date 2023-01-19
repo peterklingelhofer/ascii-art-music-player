@@ -18,8 +18,6 @@ pip install python-vlc
 python index.py
 ```
 
-You will be prompted to enter the path of a song. If you're unsure, try one of the mp3 files from the [test playlist](https://github.com/resonatecoop/mobile/blob/d01f5bad3186a343100f74575666d0506c973acc/client/test/index.ts) for Resonate's [mobile app](https://github.com/resonatecoop/mobile).
-
 ## Expected Test Output
 ```
 Giulio Cesare in Egitto, opera, HWV 17 (Public Domain).mp3
