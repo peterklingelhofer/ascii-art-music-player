@@ -12,9 +12,9 @@ def playAudio(filePath):
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy():
-        position = pygame.mixer.music.get_pos() / 1000
-        sys.stdout.write("\r|" + "#" * int(position) +
-                         "-" * (100 - int(position)) + "|")
+        position = int(pygame.mixer.music.get_pos() / 1000)
+        sys.stdout.write("\r|" + "#" * position +
+                         "-" * (100 - position) + "|")
 
         sys.stdout.flush()
         time.sleep(0.1)
